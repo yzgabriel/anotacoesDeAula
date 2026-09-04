@@ -1,0 +1,9 @@
+Resistores, a primeira coisas que ele tem é a resistência nominal, a segunda é a resistência real, e a Terceira é a potência, mas tem alguns que tem a tôlerancia
+os resistores controlam a frequencia da corrente.
+
+para formar um circuito precisa da fonte, dos resistores que so servem para aquecer, e condutor
+
+a potência é trabalho por tempo P= trabalho / tempo 
+
+potencia é resistência . corrente²
+fórmulas: https://eletroproj.com.br/lei-de-ohm-formulas-macetes-e-exemplos/

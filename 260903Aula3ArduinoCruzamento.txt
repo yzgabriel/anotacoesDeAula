@@ -1,0 +1,80 @@
+/*=========================================
+  Projeto: Cruzamento
+  Descrição: Cruzamento de 3 tempos
+  Autor: Gabriel Chinaglia
+  Data: 03/09/2026
+  Versão 0.1
+  
+  Pinagem e tempos:
+  
+  COR           PINO TEMPO
+  LED Vermelho_1   13   5s
+  LED Amarelo_1    12   2s
+  LED Verde_1      11   3s
+  
+  LED Vermelho_2   7   5s
+  LED Amarelo_2    6   2s
+  LED Verde_2      5   3s
+  =========================================*/
+
+int const pinLedVermelho_1 = 13; //nomeia as variaveis
+int const pinLedAmarelo_1 = 12;
+int const pinLedVerde_1 = 11;
+
+int const pinLedVermelho_2 = 7;
+int const pinLedAmarelo_2 = 6;
+int const pinLedVerde2 = 5;
+
+int const tempoAmarelo = 2000;
+int const tempoVerde = 3000;
+
+void setup()
+{
+	pinMode(13, OUTPUT);
+	pinMode(12, OUTPUT);
+	pinMode(11, OUTPUT);
+  	pinMode(7, OUTPUT);
+  	pinMode(6, OUTPUT);
+  	pinMode(5, OUTPUT);
+}
+
+void loop()
+{
+  	//semaforo 1
+	digitalWrite(pinLedVerde_2, HIGH); 
+ 	digitalWrite(pinLedVermelho_1, HIGH);
+ 	delay(tempoVerde);
+  	digitalWrite(pinLedVerde_2, LOW);
+  
+  	digitalWrite(pinLedAmarelo_2, HIGH);
+	delay(tempoAmarelo);
+	digitalWrite(pinLedVermelho_1, LOW);
+  	digitalWrite(pinLedVerde_1, HIGH);
+  
+  	//semaforo 2
+    digitalWrite(pinLedAmarelo_2, LOW);
+    digitalWrite(pinLedVermelho_2, HIGH);
+    delay(tempoVerde);
+  	digitalWrite(pinLedVerde_1, LOW);
+  
+  	digitalWrite(pinLedAmarelo_1, HIGH);
+  	delay(tempoAmarelo);
+  	digitalWrite(pinLedAmarelo_1, LOW);
+  	digitalWrite(pinLedVermelho_2, LOW);
+}
+  	digitalWrite(verde2, LOW);
+  	digitalWrite(amarelo2, HIGH);
+	delay(tempoAmarelo);
+	digitalWrite(vermelho1, LOW);
+  	
+  
+  	digitalWrite(verde1, HIGH);
+    digitalWrite(amarelo2, LOW);
+    digitalWrite(vermelho2, HIGH);
+    delay(tempoVerde);
+  	digitalWrite(verde1, LOW);
+  	digitalWrite(amarelo1, HIGH);
+  	delay(tempoAmarelo);
+  	digitalWrite(amarelo1, LOW);
+  	digitalWrite(vermelho2, LOW);
+}

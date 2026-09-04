@@ -1,0 +1,34 @@
+todo mundo possui energia, o ser humano possui energia vital, e uma caneta possui energia gravitacional.
+energia eletrica é uma forma de energia originada pelo movimento de partículas carregadas eletricamente, como os elétrons, em um conduto. 
+o principal da energia elétrica é o eletron.
+
+um circulo ou qualquer outro corpo nao possui eletrons e nem protons eles entram de outra forma como:
+atrito: é quando você por exemplo, esfraga um pano em uma regua ate a regua ficar sem eletrons, e quando voce encosta a regua em algo mais leve que ela o objeto vai ser puxado
+a regua vai ficar tentando roubar eletrons de outra coisa desde a mão ou um pedaço de papel
+
+contato:uma bexiga esta cheia, outra esta vazia, se vc ligar um tubo entre elas a bexiga vazia vai esvaziar ate estar as duas bexigas iguais
+
+indução: você induz um corpo a perder eletrons apenas ligando algo sem enscostar o objeto um do outro, usando um fio
+
+diferença de pontecial é quando algo quer doar algo (eletrons) pra outra coisa
+
+ddp tem a tensao eletrica e o nome da tensao eletrica é volts
+
+corrente elétrica é um fluxo ordenado de eletron e amper é pra identificar o columb que passa por segundos
+
+resistência é a propriedade para limitar quantos eletrons passa na corrente eletrica
+
+1° Lei de Ohm explica a corrente elétrica, e define a corrente usando duas forças
+
+a corrente elétrica é totalmente proporcional a tensão
+e também depende da resistência
+fórmula: I = V/R
+
+2° Lei de Ohm a resistência de um contudor depende do material feito
+
+se voce quer diminuir a resistência do condutor vc pode encurtar ele
+
+fórmula: R = p (rô) . L / S
+
+tensão: eletro indo pro ponto a ou b
+resistência: controlar para não passar muita corrente ou pouca

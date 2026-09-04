@@ -1,0 +1,27 @@
+PORTA AND:
+Se A for 0 e B for 0 = 0
+Se A for 0 e B for 1 = 0
+Se A for 1 e B for 0 = 0
+Se A for 1 e B for 1 = 1
+
+PORTA OR:
+Se A for 0 e B for 0 = 0
+Se A for 0 e B for 1 = 1
+Se A for 1 e B for 0 = 1
+Se A for 1 e B for 1 = 1
+
+PORTA NOT:
+Se A for 0 = 1
+Se A for 1 = 0
+
+PORTA NAND
+Se A for 0 e B for 0 = 1
+Se A for 0 e B for 1 = 1
+se A for 1 e B for 0 = 1
+Se A for 1 e B for 1 = 0
+
+PORTA NOR
+Se A for 0 e B for 0 = 1
+Se A for 0 e B for 1 = 0
+Se A for 1 e B for 0 = 0
+Se A for 1 e B for 1 = 0

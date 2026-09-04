@@ -1,0 +1,79 @@
+/*=========================================
+  Projeto: Váriaveis
+  Descrição: Explicando cada variável
+  Autor: Gabriel Chinaglia
+  Data: 04/09/2026
+  Versão 0.1
+  =========================================*/
+
+/* REGRAS PARA NOMES:
+1 - Não pode iniciar por números
+2 - Não pode usar caracteres especiais exceto _ e -
+3 - Não pode ser um nome composto (não usar espaço)
+4 - Não pode usar palavras reservadas (ex. void, true...)
+*/
+
+//bit é a menor unidade de memória podendo ser 0 ou 1
+// Byte é o conjunto de 8 bits, e é a menor unidade usável de memória
+
+
+int variavel_int = 0; //ocupa 2 Bytes de memória (16 bits) -32768 até 32767
+//o primeiro bit é o sinal 0 para positivo e 1 para negativo
+
+bool variavel_bool = 0; //ocupa 1 Byte podendo ser 0000 0000 ou 0000 0001
+						// qualquer coisa diferente de zero é um.
+
+byte variavel_byte = 0; //ocupa 1 Byte de moemoria, aceita valores entre 0 á 255
+  					    //Só existe na plataforma Arduino!!!!
+  
+char variavel_char = 0; //ocupa 1 Byte, aceita valores entre 0 á 255, cada valor
+						//representa um caractere na tabela ASCII
+
+long variavel_long =00; //ocupa 4 Bytes aceita valores entre -2,147,483,648 á
+						//2,147,482=3,647
+
+unsigned int variavel_int_positiva = 0; //2 Bytes, aceita valores de 0 á 65536
+
+unsigned long variavel_long_positiva = 0; //4 BYtes, aceita valores de 0 á
+										  //4,294,967,295
+
+float variavel_float = 0; //ocupa 4 Bytes, e aceita valores reais (com casas decimais)
+
+//variaveis não tipadas
+
+int8_t variavel_8bits = 0; // aceita valores entre -128 á 127
+uint8_t variavel_8bits_positiva = 0; //aceita valores entre 0 á 255
+
+int16_t variavel_16bits = 0;
+uint16_t variavel_16bits_positiva = 0;
+  
+int32_t variavel_32bits = 0;
+uint32_t variavel_32bits_positiva = 0;
+  
+
+void setup()
+{
+  Serial.begin(9600); //9600 é o baud rate em bits por segundo
+  
+  Serial.println("Tamanho dos tipos de variaveis:");
+  Serial.print("O tipo int tem: ");
+  Serial.print(sizeof(int));
+  Serial.println(" bytes");
+  
+  Serial.print("O tipo long tem: ");
+  Serial.print(sizeof(long));
+  Serial.println(" bytes");
+  
+  Serial.print("O tipo double tem: ");
+  Serial.print(sizeof(double));
+  Serial.println(" bytes");
+  
+  Serial.print("A variavel variavel_bool tem: ");
+  Serial.print(sizeof(variavel_bool));
+  Serial.println(" bytes");
+}
+
+void loop()
+{
+
+}

@@ -1,0 +1,26 @@
+// <- comenta apenas uma linha
+/* */ <- comenta varias linhas
+
+todo dev precisa documentar para ficar organizado
+exemplo:
+/*======================================
+  Projeto: Blink
+  Descrição: Pisca o led da placa
+  Autor: Gabriel Chinaglia
+  Data: 03/09/2026
+  Versão 0.1
+  ======================================*/
+
+  Como ligar o led no arduino e fazer piscar
+
+  void setup()                //Função que é chamada (obrigatoria) na incialização do Arduino
+{
+	pinMode(13, OUTPUT);    //COnfigura o pino 13 como OUTPUT (Saida)
+}
+void loop()                 //Cria uma estrutura de repetição após o setup() e roda infinitamente
+{	
+  digitalWrite(13, HIGH);   //Escreve no pino 13 o nível lógico HIGH (alto 5v)
+  delay(1000);              //Trava o programa por 1000ms (1s)
+  digitalWrite(13, LOW);    //Escreve no pino 13 o nível lógico LOW (baixo 0v)
+  delay(1000);              //Trava o programa por 1000ms (1s)
+}

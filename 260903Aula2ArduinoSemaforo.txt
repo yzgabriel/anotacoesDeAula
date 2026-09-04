@@ -1,0 +1,34 @@
+/*=========================================
+  Projeto: Semáforo
+  Descrição: Semáforo simples de 3 tempos
+  Autor: Gabriel Chinaglia
+  Data: 03/09/2026
+  Versão 0.1
+  
+  Pinagem e tempos:
+  
+  COR           PINO TEMPO
+  LED Vermelho   13   5s
+  LED Amarelo    12   2s
+  LED Verde      11   3s
+  =========================================*/
+
+void setup()
+{
+	pinMode(13, OUTPUT);
+	pinMode(12, OUTPUT);
+	pinMode(11, OUTPUT);
+}
+
+void loop()
+{
+	digitalWrite(13, HIGH);
+	delay(5000);
+	digitalWrite(13, LOW);
+  	digitalWrite(11, HIGH);
+  	delay(3000);
+  	digitalWrite(11, LOW);
+  	digitalWrite(12, HIGH);
+ 	delay(2000);
+  	digitalWrite(12, LOW);
+}
