@@ -1,0 +1,65 @@
+/*
+ Projeto: Operadores
+  Descrição: Explicando operadores
+  Autor: Gabriel Chinaglia
+  Data: 08/09/2026
+  Versão 0.1
+*/
+
+/*=======OPERADORES ARITMÉTICOS=======
+
+= atribuição (recebe)
++ soma
+- subtração
+* multiplicação
+/ divisão
+% módulo (resto da divisão)
+=====================================*/
+
+int valorA = 5;
+int valorB = 9;
+int resultado = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.print("A soma de ");
+  Serial.print(valorA);
+  Serial.print(" e ");
+  Serial.print(valorB);
+  Serial.print(" eh: ");
+  resultado = valorA + valorB;
+  Serial.println(resultado);
+  
+  Serial.print("A subtracao de ");
+  Serial.print(valorB);
+  Serial.print(" e ");
+  Serial.print(valorA);
+  Serial.print(" eh; ");
+  resultado = valorB - valorA;
+  Serial.println (resultado);
+  
+  Serial.print("A multiplicacao de ");
+  Serial.print(valorB);
+  Serial.print(" e ");
+  Serial.print(valorA);
+  Serial.print(" eh ");
+  resultado = valorB * valorA;
+  Serial.println(resultado);
+
+  Serial.print("A divisao de ");
+  Serial.print(valorB);
+  Serial.print(" e ");
+  Serial.print(valorA);
+  Serial.print(" eh: ");
+  resultado = valorB / valorA;
+  Serial.print(resultado);
+  Serial.print(" e sobra: ");
+  Serial.println(valorB % valorA);
+  
+}
+
+void loop()
+{
+
+}
