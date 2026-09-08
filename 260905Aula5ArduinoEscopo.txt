@@ -1,0 +1,52 @@
+/*=========================================
+  Projeto: Escopo
+  Descrição: Explicando variáveis dentro de cada escopo
+  Autor: Gabriel Chinaglia
+  Data: 04/09/2026
+  Versão 0.1
+  =========================================*/
+//ESCOPO GLOBAL
+//A variavel pode ser lida e modificada em qualquer
+//parte do programa, por isso ela nunca é desalocada
+
+int variavelGlobal = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  variavelGlobal = 10;
+  
+  //ESCOPO LOCAL
+  //A variavel pode ser lida e modificada apenas na
+  //função (escopo) que ela foi definida.
+  //Quando a função terminar a variavel é desalocada.
+  //(deixa de existir).
+  
+  int variavelLocalSetup = 0;
+    
+  variavelLocalSetup = 10;
+  
+}
+
+void loop()
+{
+  // variavelLocalSetup = 20; ELA NAO ExISTE AQUI
+    
+  	variavelGlobal = variavelGlobal + 1;
+  	Serial.print("Variavel Global inctementada: ");
+  	Serial.println(variavelGlobal);
+  	delay(500);
+  
+  static int variavelLocalLoop = 0;
+  
+  	variavelLocalLoop = variavelLocalLoop + 1;
+  	Serial.print("Variavel Local incrementada: ");
+    Serial.println(variavelLocalLoop);
+  	delay(500);
+  
+  //ESCOPO LOCAL STATIC
+  //A variavel pode ser lida e modificada apenas na
+  //função (escopo) que ela foi definida.
+  //Quando a função terminar a variavel NÃO é desalocada.
+  //(continua existindo).
+}
