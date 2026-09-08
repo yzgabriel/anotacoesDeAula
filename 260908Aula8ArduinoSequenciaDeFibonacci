@@ -1,0 +1,26 @@
+/*
+ Projeto: Sequência de Fibonnaci
+  Descrição: Fazendo a sequência de Fibonnaci
+  Autor: Gabriel Chinaglia
+  Data: 08/09/2026
+  Versão 0.1
+*/
+
+unsigned long valorA = 0;
+unsigned long valorB = 1;
+unsigned long resultado = 0;
+
+void setup()
+{
+}
+
+void loop()
+{
+ Serial.begin(9600);
+ resultado = valorA + valorB ;
+ valorA = valorB;
+ valorB = resultado;
+ 
+ Serial.println(resultado);
+  delay(20);
+}
