@@ -1,0 +1,111 @@
+/*
+ Projeto: Operadores de comparação e booleanos
+  Descrição: Explicando operadores de comparação e booleanos
+  Autor: Gabriel Chinaglia
+  Data: 08/09/2026
+  Versão 0.1
+*/
+/*======OPERADORES DE COMPARAÇÃO======
+
+> maior que
+>= maior ou igual á
+< menor que
+<= menor ou igual á
+!= diferente de 
+== igual á
+
+O resultado de uma comparação sempre
+será true ou false.
+====================================
+
+========OPERADORES BOOLEANOS========
+
+&& Logica E
+|| Logica OU
+!  Logica NOT
+
+   E         OU       NOT
+A  B  Y    A  B  Y    A  Y
+0  0  0    0  0  0    0  1 
+0  1  0    0  1  1    1  0
+1  0  0    1  0  1
+1  1  1    1  1  1  
+
+O resultado de uma operação booleana
+sempre será true ou false.
+===================================*/
+
+int valorA = 10;
+int valorB = 7;
+int valorC = 12;
+int valorD = 12;
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  Serial.print(valorA);
+  Serial.print(" eh maior que ");
+  Serial.print(valorB);
+  Serial.print(" ");
+  Serial.println(valorA > valorB);
+  
+  Serial.print(valorC);
+  Serial.print(" eh maior ou igual a ");
+  Serial.print(valorD);
+  Serial.print(" ");
+  Serial.println(valorC >= valorD);
+  
+  Serial.print(valorA);
+  Serial.print(" eh menor que ");
+  Serial.print(valorB);
+  Serial.print(" ");
+  Serial.println(valorA < valorB);
+    
+  Serial.print(valorA);
+  Serial.print(" eh igual a ");
+  Serial.print(valorC);
+  Serial.print (" ");
+  Serial.println(valorA == valorC);
+
+  Serial.print(valorA);
+  Serial.print(" eh diferente de ");
+  Serial.print(valorC);
+  Serial.print(" ");
+  Serial.println(valorA != valorC);
+  
+  // Se o valor A é maior que B e menor que C
+  
+  Serial.print(valorA);
+  Serial.print( " eh maior que ");
+  Serial.print(valorB);
+  Serial.print(" e eh menor que ");
+  Serial.print(valorC);
+  Serial.print(" ");
+  Serial.println((valorA > valorB) && (valorA < valorC));
+  
+  // se o valor B é menor que o valor C ou se é maior que o valor A
+  
+  Serial.print(valorB);
+  Serial.print(" eh menor que ");
+  Serial.print(valorC);
+  Serial.print(" ou eh maior que ");
+  Serial.print(valorA);
+  Serial.print(" ");
+  Serial.println((valorB < valorC) || (valorB > valorA));
+  
+  // se o valor A é maior que o valor B e NÃO é menor que o valor C
+  
+  Serial.print(valorA);
+  Serial.print(" eh maior que ");
+  Serial.print(valorB);
+  Serial.print(" e nao é menor que ");
+  Serial.print(valorC);
+  Serial.print(" ");
+  Serial.print((valorA > valorB) &&! (valorA < valorC));
+  
+}
+
+void loop()
+{
+}
