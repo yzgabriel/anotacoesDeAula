@@ -1,0 +1,28 @@
+/*
+ Projeto: 
+  Descrição: 
+  Autor: Gabriel Chinaglia
+  Data: 
+  Versão 0.1
+*/
+
+const int pinBotao = 7;
+
+
+void setup()
+{
+  
+  pinMode(pinBotao, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  bool estadoBotao = digitalRead(pinBotao);
+  
+  if(!estadoBotao) 
+    Serial.println("Botao Solto");
+  else 
+    Serial.println("Botao Pressionado");
+  delay(200); //alivio para o simulador
+}
