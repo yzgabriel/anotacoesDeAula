@@ -20,6 +20,8 @@
 int variavel_int = 0; //ocupa 2 Bytes de memória (16 bits) -32768 até 32767
 //o primeiro bit é o sinal 0 para positivo e 1 para negativo
 
+const int = 0; // é uma variavel apenas para leitura
+
 bool variavel_bool = 0; //ocupa 1 Byte podendo ser 0000 0000 ou 0000 0001
 						// qualquer coisa diferente de zero é um.
 
