@@ -1,0 +1,28 @@
+/*
+ Projeto: IF
+  Descrição: Aprendendo IF
+  Autor: Gabriel Chinaglia
+  Data: 09/09/2026
+  Versão 0.1
+*/
+
+unsigned int contador = 0;
+  
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int divisor = 3;
+  contador = contador + 1;
+  
+  if ((contador % divisor) == 0)
+  {
+    Serial.print(contador);
+    Serial.print(" eh multiplo de ");
+    Serial.println(divisor);
+    delay(200);
+  }  
+}
