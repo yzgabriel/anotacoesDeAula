@@ -2,7 +2,7 @@
  Projeto: Resistor Pull Up
   Descrição: Aprendendo sobre Resistor PullUp
   Autor: Gabriel Chinaglia
-  Data: 
+  Data: 09/09/2026
   Versão 0.1
 */
 
