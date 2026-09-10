@@ -3,7 +3,7 @@
   Descrição: Aprendendo sobre Resistor PullUp
   Autor: Gabriel Chinaglia
   Data: 09/09/2026
-  Versão 0.1
+  Versão 0.2
 */
 
 const int pinBotao = 7;
@@ -20,6 +20,7 @@ void loop()
 {
   bool estadoBotao = digitalRead(pinBotao);
   
+  
   if(estadoBotao == LOW) 
     Serial.println("Botao Solto");
   else 
@@ -27,14 +28,14 @@ void loop()
   delay(200); //alivio para o simulador
   
   
+  static bool estadoLed = 0;
   
+  if(!estadoBotao)
+    estadoLed = !estadoLed;
+  else
+    estadoLed = LOW;
   
-    if(estadoBotao == HIGH)
-      digitalWrite(pinLed, LOW);
-    else
-      digitalWrite(pinLed, HIGH);
-  	  delay(200);
- 	  digitalWrite(pinLed, LOW);
-  	  delay(200);
+  digitalWrite(pinLed, estadoLed);
+  delay(100);
   
 }
