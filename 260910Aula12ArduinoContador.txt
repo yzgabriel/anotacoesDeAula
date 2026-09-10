@@ -1,0 +1,49 @@
+/*
+ Projeto: Contador
+  Descrição: Fazendo um contador de cliques
+  Autor: Gabriel Chinaglia
+  Data: 10/09/2026
+  Versão 0.1
+*/
+
+const int pinBotao = 7;
+
+
+
+void setup()
+{
+  
+  pinMode(pinBotao, INPUT_PULLUP);
+  Serial.begin(9600);
+  
+   
+  
+}
+
+void loop()
+{
+    static int contador = 0;
+    bool estadoBotao = 1;
+	static bool estadoBotaoAntigo = HIGH;
+    estadoBotao = digitalRead(pinBotao);
+  	
+  
+    if (estadoBotao != estadoBotaoAntigo)
+    {
+      if(!estadoBotao)
+      {
+        contador = contador + 1;
+        Serial.print("Foi pressionado - ");
+        Serial.println(contador);
+      }
+      
+      else
+      {
+        Serial.println("Foi solto");
+      }
+    }
+    
+  
+  delay(150);
+  estadoBotaoAntigo = estadoBotao;
+}
