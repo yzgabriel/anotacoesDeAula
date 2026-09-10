@@ -1,0 +1,40 @@
+/*
+ Projeto: Resistor Pull Up
+  Descrição: Aprendendo sobre Resistor PullUp
+  Autor: Gabriel Chinaglia
+  Data: 09/09/2026
+  Versão 0.1
+*/
+
+const int pinBotao = 7;
+const int pinLed = 8;
+
+void setup()
+{
+  pinMode(pinBotao, OUTPUT);
+  pinMode(pinBotao, INPUT_PULLUP);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  bool estadoBotao = digitalRead(pinBotao);
+  
+  if(estadoBotao == LOW) 
+    Serial.println("Botao Solto");
+  else 
+    Serial.println("Botao Pressionado");
+  delay(200); //alivio para o simulador
+  
+  
+  
+  
+    if(estadoBotao == HIGH)
+      digitalWrite(pinLed, LOW);
+    else
+      digitalWrite(pinLed, HIGH);
+  	  delay(200);
+ 	  digitalWrite(pinLed, LOW);
+  	  delay(200);
+  
+}
