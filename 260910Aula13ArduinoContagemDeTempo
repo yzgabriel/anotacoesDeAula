@@ -1,0 +1,20 @@
+/*
+ Projeto: Contagem de tempo
+  Descrição: Apresentado o millis()
+  Autor: Gabriel Chinaglia
+  Data: 10/09/2026
+  Versão 0.1
+*/
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  unsigned long tempo = millis();
+  Serial.println(tempo);
+}
