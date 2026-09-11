@@ -41,6 +41,9 @@ unsigned long variavel_long_positiva = 0; //4 BYtes, aceita valores de 0 á
 
 float variavel_float = 0; //ocupa 4 Bytes, e aceita valores reais (com casas decimais)
 
+static variavel_static_int = 0; // é aquela que mantém o seu valor guardado entre 
+//diferentes chamadas de uma função e existe durante toda a execução do programa
+
 //variaveis não tipadas
 
 int8_t variavel_8bits = 0; // aceita valores entre -128 á 127
