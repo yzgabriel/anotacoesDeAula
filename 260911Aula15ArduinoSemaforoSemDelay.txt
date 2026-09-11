@@ -1,0 +1,73 @@
+/*=========================================
+  Projeto: Semáforo sem delay
+  Descrição: Semáforo sem delay
+  Autor: Gabriel Chinaglia
+  Data: 11/09/2026
+  Versão 0.1
+  
+  Pinagem e tempos:
+  
+  COR           PINO TEMPO
+  LED Vermelho   13   5s
+  LED Verde      12   3s
+  LED Amarelo    11   2s
+  =========================================*/
+
+int pinLedAmarelo = 11;
+int pinLedVerde = 12;
+int pinLedVermelho = 13;
+
+  
+int  estadoLedAmarelo = 0;
+int  estadoLedVerde = 0;
+int  estadoLedVermelho = 1;
+
+
+int const intervaloLedVerde = 3;
+int const intervaloLedVermelho = 5;
+
+static int contador = 0;
+int umSegundo = 1000;
+
+
+void setup()
+{
+  
+  Serial.begin(9600);
+  pinMode(pinLedAmarelo, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  pinMode(pinLedVermelho, OUTPUT);
+}
+
+void loop()
+{
+  
+  unsigned long tempoAtual = millis();
+  static unsigned long tempoInicial = 0;
+  
+  if(tempoAtual >= tempoInicial + umSegundo)
+  {
+    contador = contador + 1;
+    if(contador >= 10) contador = 0;
+    Serial.print(contador);
+    tempoInicial = tempoAtual;
+  }
+  if(contador < 3)
+  {
+    estadoLedVermelho = LOW;
+    estadoLedVerde = HIGH;
+}
+  else if(contador < 5)
+  {
+    estadoLedVerde = LOW;
+    estadoLedAmarelo = HIGH;
+  }
+  else
+  {
+    estadoLedAmarelo = LOW;
+    estadoLedVermelho = HIGH;
+  }
+  digitalWrite(pinLedVermelho, estadoLedVermelho);
+  digitalWrite(pinLedAmarelo, estadoLedAmarelo);
+  digitalWrite(pinLedVerde, estadoLedVerde);
+}
