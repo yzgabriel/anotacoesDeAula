@@ -1,0 +1,40 @@
+/*
+ Projeto: Blink sem delay
+  Descrição: Criando um blink sem usar o delay
+  Autor: Gabriel Chinaglia
+  Data: 11/09/2026
+  Versão 0.1
+*/
+
+int const pinLed = 8;
+int estadoDoLed = LOW;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(pinLed, OUTPUT);
+  
+}
+
+void loop()
+{
+  static const long intervalo = 1000;
+  static unsigned long int tempoAnterior = 0;
+  unsigned long tempoAtual = millis();
+  
+
+    if(tempoAtual - tempoAnterior >= intervalo)
+    {
+      tempoAnterior = tempoAtual;
+    
+      if (estadoDoLed == LOW)
+      {
+        estadoDoLed = HIGH;
+      }
+      else
+      {
+        estadoDoLed = LOW;
+      }
+      digitalWrite(pinLed, estadoDoLed);
+    }
+}
