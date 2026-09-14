@@ -1,0 +1,201 @@
+/*=========================================
+  Projeto: Cruzamento sem delay
+  Descrição: Cruzamento sem delay
+  Autor: Gabriel Chinaglia
+  Data: 11/09/2026
+  Versão 0.1
+  
+  Pinagem e tempos:
+  
+  COR           PINO TEMPO
+  LED Vermelho_1   13   5s
+  LED Amarelo_1    11   2s
+  LED Verde_1      12   3s
+  
+  LED Vermelho_2   7   5s
+  LED Amarelo_2    5   2s
+  LED Verde_2      6   3s
+  =========================================*/
+
+const int pinLedAmarelo = 11;
+const int pinLedVerde = 12;
+const int pinLedVermelho = 13;
+
+int pinLedAmarelo2 = 5;
+int pinLedVerde2 = 6;
+int pinLedVermelho2 = 7;
+
+
+// ESTADOS DOS LEDS
+
+int estadoLedAmarelo = 0;
+int estadoLedVerde = 0;
+int estadoLedVermelho = 0;
+
+int estadoLedAmarelo2 = 0;
+int estadoLedVerde2 = 0;
+int estadoLedVermelho2 = 0;
+
+
+// TEMPOS
+
+int const intervaloLedVerde = 3;
+int const intervaloLedVermelho = 5;
+
+static int contador = 0;
+
+int umSegundo = 1000;
+
+
+// BOTÃO
+
+static int pinBotao = 2;
+
+
+void setup()
+{
+  Serial.begin(9600);
+
+  pinMode(pinLedAmarelo, OUTPUT);
+  pinMode(pinLedVerde, OUTPUT);
+  pinMode(pinLedVermelho, OUTPUT);
+
+  pinMode(pinLedAmarelo2, OUTPUT);
+  pinMode(pinLedVerde2, OUTPUT);
+  pinMode(pinLedVermelho2, OUTPUT);
+
+  pinMode(pinBotao, INPUT_PULLUP);
+}
+
+
+void loop()
+{
+  bool estadoBotao = 1;
+
+  unsigned long tempoAtual = millis();
+
+  static unsigned long tempoInicial = 0;
+
+  static bool estadoBotaoAntigo = HIGH;
+
+  static bool alertaLigado = 0;
+
+
+  // LEITURA DO BOTÃO
+
+  estadoBotao = digitalRead(pinBotao);
+
+  if (estadoBotao != estadoBotaoAntigo)
+  {
+    if (!estadoBotao)
+    {
+      alertaLigado = !alertaLigado;
+
+      Serial.println("botao apertado");
+
+      estadoLedVerde = LOW;
+      estadoLedAmarelo = LOW;
+      estadoLedVermelho = LOW;
+
+      estadoLedVerde2 = LOW;
+      estadoLedAmarelo2 = LOW;
+      estadoLedVermelho2 = LOW;
+
+      contador = 0;
+
+      tempoInicial = tempoAtual;
+    }
+  }
+
+  estadoBotaoAntigo = estadoBotao;
+
+
+  // CONTADOR DE TEMPO
+
+  if (tempoAtual - tempoInicial >= umSegundo)
+  {
+    tempoInicial = tempoAtual;
+
+    contador++;
+
+    if (contador >= 9)
+    {
+      contador = 0;
+    }
+
+    Serial.println(contador);
+  }
+
+
+  // MODO NORMAL
+
+  if (!alertaLigado)
+  {
+    if (contador < 3)
+    {
+      estadoLedAmarelo2 = LOW;
+
+      estadoLedVermelho = LOW;
+
+      estadoLedVermelho2 = HIGH;
+
+      estadoLedVerde = HIGH;
+    }
+
+    else if (contador < 5)
+    {
+      estadoLedVerde = LOW;
+
+      estadoLedAmarelo = HIGH;
+    }
+
+    else if (contador < 7)
+    {
+      estadoLedAmarelo = LOW;
+
+      estadoLedVermelho2 = LOW;
+
+      estadoLedVermelho = HIGH;
+
+      estadoLedVerde2 = HIGH;
+    }
+
+    else if (contador < 9)
+    {
+      estadoLedVerde2 = LOW;
+
+      estadoLedAmarelo2 = HIGH;
+    }
+  }
+
+
+  // MODO ALERTA
+
+  else
+  {
+    if ((contador % 2) == 0)
+    {
+      estadoLedAmarelo = HIGH;
+
+      estadoLedAmarelo2 = LOW;
+    }
+
+    else
+    {
+      estadoLedAmarelo2 = HIGH;
+
+      estadoLedAmarelo = LOW;
+    }
+  }
+
+
+  // LEDS
+
+  digitalWrite(pinLedVermelho2, estadoLedVermelho2);
+  digitalWrite(pinLedAmarelo2, estadoLedAmarelo2);
+  digitalWrite(pinLedVerde2, estadoLedVerde2);
+
+  digitalWrite(pinLedVermelho, estadoLedVermelho);
+  digitalWrite(pinLedAmarelo, estadoLedAmarelo);
+  digitalWrite(pinLedVerde, estadoLedVerde);
+}
