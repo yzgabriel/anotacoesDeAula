@@ -1,0 +1,30 @@
+#include <Arduino.h>
+
+void setup()
+{
+  Serial.begin(9600);
+  int N1 = 0;
+  int N2 = 1;
+  int N3 = 0;
+  int c = 2;
+  static int tempoAtual = millis();
+  static int tempoAnterior = 0;
+
+  Serial.println("0 - 0");
+  Serial.println("1 - 1");
+  for (int i = 0; i < 19; i++)
+  {
+    N3 = N1 + N2;
+    N1 = N2;
+    N2 = N3;
+
+    Serial.print(c);
+    Serial.print(" - ");
+    Serial.println(N3);
+    c = c + 1;
+  }
+}
+
+void loop()
+{
+}
