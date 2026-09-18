@@ -1,0 +1,34 @@
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+}
+
+  void loop()
+{
+  int i = 0;
+  if (i < 101)
+  for (i; i <= 100; i++)
+  {
+    lcd.setCursor(0, 3);
+    lcd.print("Contando: ");
+    lcd.setCursor(12, 3);
+    lcd.print(i); 
+  }
+  if(i >= 100)
+  {
+    for ( i = 100; i > 0; i--)
+    {
+      lcd.setCursor(0, 3);
+      lcd.print("Contando: ");
+      lcd.setCursor(12, 3);
+      lcd.print(i); 
+    }
+  }
+  }
