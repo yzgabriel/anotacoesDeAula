@@ -1,0 +1,67 @@
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
+#include <Botao.h>
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+Botao btnCima(13);
+Botao btnBaixo(12);
+Botao btnEnter(14);
+
+const int pinsLeds[4] = {4, 6, 17, 10};
+static int contador = 0;
+
+void telaInicial()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("SELECIONE O VALOR ");
+  lcd.setCursor(0, 1);
+  lcd.print("VALOR");
+  lcd.setCursor(0, 3);
+  lcd.print("ENTER = CONFIRMAR");
+}
+
+void setup()
+{
+  btnCima.iniciar();
+  btnBaixo.iniciar();
+  btnEnter.iniciar();
+
+  Serial.begin(9600);
+
+  lcd.init();
+  lcd.backlight();
+
+  telaInicial();
+}
+
+void loop()
+{
+  static int posicaoContador = 0;
+  static int posicaoContadorAnterior = 0;
+  static bool estadosLeds[4] = {0, 0, 0, 0};
+  bool alteracaoDisplay = 0;
+
+  if (btnBaixo.pressionou())
+  {
+    if (contador > 0)
+    {
+      contador--;
+      lcd.setCursor(6, 1);
+      lcd.print("  ");
+    }
+  }
+  if (btnCima.pressionou())
+  {
+    if (contador < 15)
+    {
+      contador++;
+      lcd.setCursor(6, 1);
+      lcd.print("  ");
+    }
+  }
+
+    lcd.setCursor(6, 1);
+    lcd.print(contador);
+
+  }
+  // if (btnEnter.pressionou())
