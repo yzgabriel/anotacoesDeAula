@@ -3,7 +3,7 @@
   Descrição: Mudar seleção de LEDs com botões e exibir estado no display LCD
   Autor: Gabriel Chinaglia
   Data: 29/09/2026
-  Versão 0.2
+  Versão 0.3
 */
 
 #include <Arduino.h>
@@ -16,6 +16,20 @@ Botao btnBaixo(13);
 Botao btnEnter(14);
 
 const int pinsLeds[4] = {4, 6, 17, 10};
+
+//=========PROTOTIPO DAS FUNCOES===============
+void telaInicial()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("> Led A DESLIGADO");
+  lcd.setCursor(0, 1);
+  lcd.print("  Led B DESLIGADO");
+  lcd.setCursor(0, 2);
+  lcd.print("  Led C DESLIGADO");
+  lcd.setCursor(0, 3);
+  lcd.print("  Led D DESLIGADO");
+}
+
 
 void setup()
 {
@@ -30,14 +44,7 @@ void setup()
   for (int i = 0; i < 4; i++)
     pinMode(pinsLeds[i], OUTPUT);
 
-  lcd.setCursor(0, 0);
-  lcd.print("> Led A DESLIGADO");
-  lcd.setCursor(0, 1);
-  lcd.print("  Led B DESLIGADO");
-  lcd.setCursor(0, 2);
-  lcd.print("  Led C DESLIGADO");
-  lcd.setCursor(0, 3);
-  lcd.print("  Led D DESLIGADO");
+  
 }
 
 void loop()
@@ -86,3 +93,5 @@ void loop()
     lcd.print(estadosLeds[posicaoSeletor] ? "LIGADO   " : "DESLIGADO");
   }
 }
+
+
