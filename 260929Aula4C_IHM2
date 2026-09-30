@@ -1,17 +1,9 @@
 /*
- Projeto: IHM - Controle de LEDs com Display LCD
+ Projeto: IHM2 - Controle de LEDs com Display LCD (correção)
   Descrição: Mudar seleção de LEDs com botões e exibir estado no display LCD
   Autor: Gabriel Chinaglia
   Data: 29/09/2026
-  Versão 0.1
-*/
-
-/*
- Projeto: IHM - Controle de LEDs com Display LCD
-  Descrição: Mudar seleção de LEDs com botões e exibir estado no display LCD
-  Autor: Gabriel Chinaglia
-  Data: 29/09/2026
-  Versão 0.1
+  Versão 0.2
 */
 
 #include <Arduino.h>
@@ -23,10 +15,7 @@ Botao btnCima(12);
 Botao btnBaixo(13);
 Botao btnEnter(14);
 
-const int pinLedA = 4;
-const int pinLedB = 6;
-const int pinLedC = 17;
-const int pinLedD = 10;
+const int pinsLeds[4] = {4, 6, 17, 10};
 
 void setup()
 {
@@ -38,10 +27,8 @@ void setup()
 
   lcd.init();
   lcd.backlight();
-  pinMode(pinLedA, OUTPUT);
-  pinMode(pinLedB, OUTPUT);
-  pinMode(pinLedC, OUTPUT);
-  pinMode(pinLedD, OUTPUT);
+  for (int i = 0; i < 4; i++)
+    pinMode(pinsLeds[i], OUTPUT);
 
   lcd.setCursor(0, 0);
   lcd.print("> Led A DESLIGADO");
@@ -61,10 +48,7 @@ void loop()
 
   static int posicaoSeletor = 0;
   static int posicaoSeletorAnterior = 0;
-  static bool estadoLedA = 0;
-  static bool estadoLedB = 0;
-  static bool estadoLedC = 0;
-  static bool estadoLedD = 0;
+  static bool estadosLeds[4] = {0, 0, 0, 0};
   bool alteracaoDisplay = 0;
 
   if (btnBaixo.pressionou())
@@ -79,22 +63,13 @@ void loop()
   }
   if (btnEnter.pressionou())
   {
-    if (posicaoSeletor == 0)
-      estadoLedA = !estadoLedA;
-    else if (posicaoSeletor == 1)
-      estadoLedB = !estadoLedB;
-    else if (posicaoSeletor == 2)
-      estadoLedC = !estadoLedC;
-    else
-      estadoLedD = !estadoLedD;
+    estadosLeds[posicaoSeletor] = !estadosLeds[posicaoSeletor];
     alteracaoDisplay = 1;
   }
 
   //=================LEDS======================
-  digitalWrite(pinLedA, estadoLedA);
-  digitalWrite(pinLedB, estadoLedB);
-  digitalWrite(pinLedC, estadoLedC);
-  digitalWrite(pinLedD, estadoLedD);
+  for (int i = 0; i < 4; i++)
+    digitalWrite(pinsLeds[i], estadosLeds[i]);
 
   //===============DISPLAY====================
   if (posicaoSeletor != posicaoSeletorAnterior)
@@ -107,25 +82,7 @@ void loop()
   }
   if (alteracaoDisplay)
   {
-    lcd.setCursor(8, 0);
-    if (estadoLedA)
-      lcd.print("LIGADO   ");
-    else
-      lcd.print("DESLIGADO");
-    lcd.setCursor(8, 1);
-    if (estadoLedB)
-      lcd.print("LIGADO   ");
-    else
-      lcd.print("DESLIGADO");
-    lcd.setCursor(8, 2);
-    if (estadoLedC)
-      lcd.print("LIGADO   ");
-    else
-      lcd.print("DESLIGADO");
-    lcd.setCursor(8, 3);
-    if (estadoLedD)
-      lcd.print("LIGADO   ");
-    else
-      lcd.print("DESLIGADO");
+    lcd.setCursor(8, posicaoSeletor);
+    lcd.print(estadosLeds[posicaoSeletor] ? "LIGADO   " : "DESLIGADO");
   }
 }
