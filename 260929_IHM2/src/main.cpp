@@ -1,0 +1,97 @@
+/*
+ Projeto: IHM2 - Controle de LEDs com Display LCD (correção)
+  Descrição: Mudar seleção de LEDs com botões e exibir estado no display LCD
+  Autor: Gabriel Chinaglia
+  Data: 29/09/2026
+  Versão 0.1
+*/
+
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
+#include <Botao.h>
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+Botao btnCima(12);
+Botao btnBaixo(13);
+Botao btnEnter(14);
+
+const int pinsLeds[4] = {4, 6, 17, 10};
+
+//=========PROTOTIPO DAS FUNCOES===============
+void telaInicial()
+{
+  lcd.setCursor(0, 0);
+  lcd.print("> Led A DESLIGADO");
+  lcd.setCursor(0, 1);
+  lcd.print("  Led B DESLIGADO");
+  lcd.setCursor(0, 2);
+  lcd.print("  Led C DESLIGADO");
+  lcd.setCursor(0, 3);
+  lcd.print("  Led D DESLIGADO");
+}
+
+
+void setup()
+{
+  btnCima.iniciar();
+  btnBaixo.iniciar();
+  btnEnter.iniciar();
+
+  Serial.begin(9600);
+
+  lcd.init();
+  lcd.backlight();
+  for (int i = 0; i < 4; i++)
+    pinMode(pinsLeds[i], OUTPUT);
+
+  
+}
+
+void loop()
+{
+  btnBaixo.atualizar();
+  btnCima.atualizar();
+  btnEnter.atualizar();
+
+  static int posicaoSeletor = 0;
+  static int posicaoSeletorAnterior = 0;
+  static bool estadosLeds[4] = {0, 0, 0, 0};
+  bool alteracaoDisplay = 0;
+
+  if (btnBaixo.pressionou())
+  {
+    if (posicaoSeletor < 3)
+      posicaoSeletor++;
+  }
+  if (btnCima.pressionou())
+  {
+    if (posicaoSeletor > 0)
+      posicaoSeletor--;
+  }
+  if (btnEnter.pressionou())
+  {
+    estadosLeds[posicaoSeletor] = !estadosLeds[posicaoSeletor];
+    alteracaoDisplay = 1;
+  }
+
+  //=================LEDS======================
+  for (int i = 0; i < 4; i++)
+    digitalWrite(pinsLeds[i], estadosLeds[i]);
+
+  //===============DISPLAY====================
+  if (posicaoSeletor != posicaoSeletorAnterior)
+  {
+    lcd.setCursor(0, posicaoSeletor);
+    lcd.print(">");
+    lcd.setCursor(0, posicaoSeletorAnterior);
+    lcd.print(" ");
+    posicaoSeletorAnterior = posicaoSeletor;
+  }
+  if (alteracaoDisplay)
+  {
+    lcd.setCursor(8, posicaoSeletor);
+    lcd.print(estadosLeds[posicaoSeletor] ? "LIGADO   " : "DESLIGADO");
+  }
+}
+
+
