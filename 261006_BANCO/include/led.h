@@ -1,19 +1,33 @@
-#ifndef led_h
-#define led_h
+#ifndef LED_H
+#define LED_H
 
 #include <Arduino.h>
 
 class Led
 {
     private:
-
+    
     uint8_t _pinoLed;
     bool _estadoLed = 0;
     bool _estaPiscando = 0;
     uint32_t _tempoAnteriorAcionamento_ms;
-    uint32_t _intervaloPiscarAmarelo_ms = 200;
-    uint32_t _intervaloPiscarVermelho_ms = 1000;
+    uint32_t _intervaloPiscar_ms = 1000;
 
+    public:
+
+    Led(uint8_t pino);
+
+    void iniciar();
+    void atualizar();
+    void ligar();
+    void desligar();
+    void alternar();
+    void piscaPisca(uint32_t quantidade = 10);
+    void alternarPisca();
+    
+    uint8_t getPinoLed();
+    void setEstadoLed(bool estadoLed);
+    bool getEstadoLed();
 };
 
 #endif
