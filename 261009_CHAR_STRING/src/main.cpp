@@ -161,5 +161,59 @@ void textoTipoC()
 
 void textoTipoString()
 {
+  String nome = "Gabriel";
+  String curso = "Lógica de programação";
+  String mensagem = "Ola";
 
+  mensagem = mensagem + ", " + nome + "! Bem vindo ao curso de " + curso + ".";
+
+  Serial.println(mensagem);
+
+  //* Tamanho da String
+  int tamanhoMensagem = mensagem.length();
+  Serial.printf("Tamanho da String em letra: %u\n\r", tamanhoMensagem);
+
+  //* Acessando um caractere em uma posição especifica
+  char primeiraLetra = mensagem.charAt(0);
+  Serial.printf("Primeira letra: %c\n\r", primeiraLetra);
+
+  //*Tambem é possivel acessar com colchetes
+  char ultimaLetra = mensagem[tamanhoMensagem - 1];
+  Serial.printf("Ultima letra: %c\n\r", ultimaLetra);
+  
+  //* Procurando um texto dentro da String
+  int posicaoTextoProcurado = mensagem.indexOf("curso");
+  Serial.printf("A palavra procurada esta na posicao: %b\n\r", posicaoTextoProcurado);
+
+  int inicioNomeCurso = posicaoTextoProcurado + 9; //* posição da palavra curso + 9 posições a frente
+
+  String nomeDoCursoTexto = mensagem.substring(inicioNomeCurso, tamanhoMensagem - 1);
+  Serial.printf("Nome do curso : %s\n\r", nomeDoCursoTexto.c_str());
+
+  //* Substituindo um trecho dentro da String
+  mensagem.replace("Ola,", "Boa Tarde! ");
+  Serial.println(mensagem);
+
+  //* Convertendo tudo em maiúsculas
+  mensagem.toUpperCase();
+  Serial.println(mensagem);
+
+  //* Convertendo tudo em minúsculas
+  mensagem.toLowerCase();
+  Serial.println(mensagem);
+
+  //* Verificando se uma String está vazia
+  String textoVazio = "";
+  if(textoVazio.length() == 0)
+  Serial.println("O texto esta vazio");
+
+  //* Convertendo texto númerico para inteiro
+  String textoNumero = "725";
+  int numero = textoNumero.toInt();
+  Serial.println(numero / 5);
+
+  //* Convertendo String para const char* (texto tipo c)
+  //* Isso é útil quando alguma biblioteca espera texto estilo C
+  const char* textoComoChar = mensagem.c_str();
+  Serial.println(textoComoChar);
 }
