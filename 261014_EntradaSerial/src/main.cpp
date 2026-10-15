@@ -2,7 +2,14 @@
 
 void funcaoBloqueante();
 void funcaoNaoBloqueante();
-void processarFrase(const char* texto);
+void processarFrase(char* texto);
+void aplicarCor();
+int lerProximoNumero(char* &cursor);
+
+int vermelho = 0;
+int verde = 0;
+int azul = 0;
+int brilho = 0;
 
 void setup() 
 {
@@ -69,36 +76,112 @@ void processarFrase(char* texto)
   //* strcasecmp verifica a posicao lexica das palavras ignorando letras minusculas ou maiusculas
   if(strcasecmp(comando, "VERMELHO") == 0)
   {
-
+    vermelho = 255;
+    azul = 0;
+    verde = 0;
+    brilho = 100;
   }
   else if(strcasecmp(comando, "VERDE") == 0)
   {
-    
+    vermelho = 0;
+    azul = 0;
+    verde = 255;
+    brilho = 100;
   }
   else if(strcasecmp(comando, "AZUL") == 0)
   {
-
+    vermelho = 0;
+    azul = 255;
+    verde = 0;
+    brilho = 100;
   }
   else if(strcasecmp(comando, "BRANCO") == 0)
   {
-
+    vermelho = 255;
+    azul = 255;
+    verde = 255;
+    brilho = 100;
   }
   else if(strcasecmp(comando, "DESLIGA") == 0)
   {
-
+    vermelho = 0;
+    azul = 0;
+    verde = 0;
+    brilho = 0;
   }
   else if(strcasecmp(comando, "RGB") == 0)
   {
+    if(parametro == NULL)
+    {
+      Serial.println("Use o comando: RGB r g b (0 a 255)");
+      return;
+    }
+
+    char* cursor = parametro;
+
+    int r = lerProximoNumero(cursor);
+    int g = lerProximoNumero(cursor);
+    int b = lerProximoNumero(cursor);
+
+    vermelho = constrain(r, 0, 255);
+    verde = constrain(g, 0, 255);
+    azul = constrain(b, 0, 255);
 
   }
   else if(strcasecmp(comando, "BRILHO") == 0)
   {
+    if(parametro = NULL)
+    {
+      Serial.println("Use o comando: BRILHO n (0 a 100)");
+      return;
+    }
 
+    brilho = constrain(atoi(parametro), 0, 100);
   }
   else
   {
-
+    char buffer[100];
+    snprintf(buffer, sizeof(buffer), "Comando: [%s] não existe", comando);
+    Serial.println(buffer);
+    return;
   }
+  aplicarCor();
+}
+
+void aplicarCor()
+{
+  int r = vermelho * brilho / 100;
+  int g = verde * brilho / 100;
+  int b = azul * brilho / 100;
+
+  rgbLedWrite(PIN_RGB_LED, r, g, b);
+
+  char bufferMensagem[61];
+  snprintf(bufferMensagem, sizeof(bufferMensagem),
+            "Cor: R=%3d G=%3d B=%3d | Brilho: %3d %% | HEX: #%02X%02X%02X",
+          vermelho, verde, azul, brilho, r, g, b);
+  Serial.println(bufferMensagem);
+}
+
+//* cursor é uma referência (&) para um ponteiro (char*)
+//* a função recebe a própria variável de quem chamou e não uma cópia
+//* 
+//* PARAMETRO     | ALTERA O TEXTO APONTADO | ALTERA PARA ONDE O PONTEIRO DE FORA APONTA
+//* char* p       | sim(*p = '\0')          | não, porque ele é uma cópia do ponteiro
+//* const char* p | não                     | não
+//* char* &p      | sim                     | sim, é a própria variável passada como parâmetro
+
+int lerProximoNumero(char* &cursor)
+{
+  if(cursor == NULL)
+    return 0;
+
+  int valor = atoi(cursor);
+
+  char* espaco = strchr(cursor, ' ');
+  cursor = (espaco != NULL) ? espaco + 1 : NULL;
+  
+  return valor;
 }
 
 void funcaoBloqueante()
